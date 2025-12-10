@@ -48,7 +48,7 @@ const App = () => {
     const [authState, setAuthState] = useState<AuthState>({
         isAuthenticated: isAuthenticated, 
         token: initialToken,
-        userRole: isAuthenticated ? (initialRole || 'ADMIN') : null,
+        userRole: isAuthenticated ? (initialRole || 'STUDENT') : null,
         userData: initialUserDataString ? JSON.parse(initialUserDataString) : null,
     });
  
