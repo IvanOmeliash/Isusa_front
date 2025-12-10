@@ -529,7 +529,7 @@ const StudentPortal: React.FC<StudentPortalProps> = ({ handleLogout, userRole, u
             <h3 className="text-2xl font-bold text-slate-900 mb-4">Нова заява</h3>
             <p className="text-sm text-slate-600 mb-6">1. Оберіть тип, 2. Опис, 3. Пароль для підпису</p>
             
-            <div className="space-y-3 mb-6 grid grid-cols-2 gap-3 max-h-52 overflow-y-auto pr-2">
+            <div className="space-y-3 mb-6 grid grid-cols-2 gap-3 max-h-32 overflow-y-auto pr-2">
               {applicationTypes.map((type, idx) => (
                 <button
                   key={idx}
