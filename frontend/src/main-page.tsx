@@ -64,7 +64,7 @@ const getStatusColor = (status: string) => {
   return colorMap[status as keyof typeof colorMap] || 'border-slate-200 bg-white';
 };
 
-const LecturerView: React.FC<StudentPortalProps> = ({ handleLogout, userRole, userId }) => {
+const LecturerView: React.FC<StudentPortalProps> = ({ userRole, userId }) => {
     const [applications, setApplications] = useState<MyApplication[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);

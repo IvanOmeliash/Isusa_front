@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Edit, Save, X, Trash2, Calendar, FileText, RefreshCcw } from 'lucide-react';
+import { Edit, Save, X, Trash2, Calendar, RefreshCcw } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 interface ApplicationData {
