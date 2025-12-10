@@ -189,9 +189,8 @@ const StudentPortal: React.FC<StudentPortalProps> = ({ handleLogout, userRole, u
   const [applications, setApplications] = useState<MyApplication[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isConfirmedToSign, setIsConfirmedToSign] = useState(false)
 
-
-    
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const studentInfo = {
     name: 'Іванов Іван Петрович',
@@ -572,17 +571,26 @@ const StudentPortal: React.FC<StudentPortalProps> = ({ handleLogout, userRole, u
             </div>
 
              {/* 4. ПАРОЛЬ ДЛЯ ПІДПИСУ */}
-            <div className="mb-6">
-                <label htmlFor="sign-password" className="block text-sm font-medium text-slate-700 mb-2">Пароль для підтвердження (ЕЦП)</label>
-                <input
-                    id="sign-password"
-                    type="password"
-                    value={passwordForSign}
-                    onChange={(e) => setPasswordForSign(e.target.value)}
-                    placeholder="Введіть ваш пароль для цифрового підпису"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-blue-500 focus:border-blue-500 text-slate-700"
-                />
-            </div>
+                <div className="flex items-start mb-6">
+                    <div className="flex items-center h-5">
+                        <input
+                            id="sign-confirmation-checkbox"
+                            name="sign-confirmation-checkbox"
+                            type="checkbox"
+                            // Встановіть тут стан, наприклад:
+                            checked={isConfirmedToSign}
+                            onChange={(e) => setIsConfirmedToSign(e.target.checked)}
+                            className="focus:ring-indigo-500 h-5 w-5 text-indigo-600 border-gray-300 rounded-lg cursor-pointer"
+                        />
+                    </div>
+                    <div className="ml-3 text-sm">
+                        <label htmlFor="sign-confirmation-checkbox" className="font-medium text-slate-800 select-none cursor-pointer">
+                            Підтверджую заяву та готовий підписати її Електронним Цифровим Підписом (ЕЦП)
+                        </label>
+                        {/* Можна додати інструкцію чи посилання */}
+                        {/* <p className="text-slate-500">Після натискання "Продовжити" відкриється вікно для вибору ключа ЕЦП.</p> */}
+                    </div>
+                </div>
 
             <div className="flex space-x-3">
               <button
@@ -596,13 +604,17 @@ const StudentPortal: React.FC<StudentPortalProps> = ({ handleLogout, userRole, u
               >
                 Скасувати
               </button>
-              <button
-                onClick={addApplication}
-                disabled={!selectedType || newApplicationDescription.trim() === '' || passwordForSign.length < 3}
-                className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Подати та Підписати
-              </button>
+                    <button
+                        onClick={addApplication}
+                        disabled={
+                            !selectedType || 
+                            newApplicationDescription.trim() === '' || 
+                            !isConfirmedToSign
+                        }
+                        className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                        Подати та Підписати
+                    </button>
             </div>
           </div>
         </div>
